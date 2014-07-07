@@ -1,0 +1,137 @@
+<section data-ng-controller="WorkitemsController" data-ng-init="getRoot()">
+	<!-- header start -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="page-header" >
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<div class="logo pull-left">
+					<a class="navbar-brand" href="/" mean-token="'site-title'">iList</a>
+				</div>
+				
+				<p class="navbar-text pull-right">{{saveStatus? saveStatus:"Saved"}}</p>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input id="query" type="text" class="form-control" ng-model="query"  placeholder="Type for searching..." />
+					</div>
+				</form>
+				
+				<button type="button" class="btn btn-sm btn-{{editable?'success' :'primary'}}  navbar-btn" data-ng-click="toggleEdit()">Edit</button>
+				<button type="button" class="btn btn-sm btn-{{displaydeleted?'success' :'primary'}}  navbar-btn" data-ng-click="toggleDeleted()">Completed: {{displaydeleted?'Visible' :'Hidden'}}</button>
+				<button type="button" class="btn btn-sm navbar-btn" data-ng-click="getRoot()">Refresh</button>
+				
+				<!--<div id="text-edit">
+											<div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
+				</div>-->
+				<ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
+					<li><a ui-sref='auth.register'>Register</a>
+					</li>
+					<li class="divider-vertical"></li>
+					<li><a ui-sref='auth.login'>Login</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						{{global.user}} <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a data-toggle="modal" data-target="#myModal" data-ng-click="exportTo(root)">Export</a>
+							</li>
+							<li><a href="/logout">Signout</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- header end -->
+
+	<script type="text/ng-template" id="workItem_rendere.html">
+		<button type="button" class="btn btn-xs btn-link iconExpand" data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true" data-ng-show="showHideExpandIcon(workItem)" data-ng-click="toggleExpand(workItem);"><i class="fa fa-{{workItem.expand?'minus': 'plus'}}-square"></i></button>
+		
+		<div class="icon">
+		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'new'" class = "fa fa-pencil fa-fw pointer"></i>
+		<!--<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'completed'" class="fa fa-check-square-o fa-fw pointer"></i> -->
+		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'deleted' || workItem.status == 'completed'" class="fa fa-check-square-o pointer"></i>
+		</div>
+											
+			
+	<!--<span>#{{workItem.index}}</span>-->
+	<div class="wiSubject {{workItem.status=='completed' || workItem.status=='deleted'?'completed':''}}" data-ng-Keydown="editSubject(workItem, $event)" data-ng-Keyup="cleanHotkeys($event)" data-ng-blur="editSubject(workItem, $event)" id = "subject_{{workItem._id}}"  contenteditable="{{editable}}" focus-me="workItem.focusInput" ng-subject="workItem.subject" ng-keyword="query"></div>
+
+	<button type="button" data-ng-show="workItem === clipboard" class="btn btn-xs btn-info" data-ng-click="cleanClipboard();"><i class="fa fa-eraser fa-fw"></i></button>
+	<div class = "btn-group" data-ng-show = "clipboard && isChild(workItem, clipboard)">
+					<button type="button"  class="btn btn-xs btn-info" data-ng-click="paste(workItem);"><i class="fa fa-angle-down fa-fw"></i></button>
+					<button type="button"  class="btn btn-xs btn-success" data-ng-click="paste(workItem,true);"><i class="fa fa-angle-right fa-fw"></i></button>
+	</div>
+	<div class="btn-group" data-ng-show="workItem.showToolBar">
+		<a class="btn btn-sm btn-primary" data-ng-href="#!/workitems/{{workItem._id}}"><i class="fa fa-folder-open-o fa-fw"></i></a>
+		<!-- <button type="button" class="btn btn-sm btn-success" data-ng-hide="workItem.status == 'completed'" data-ng-click="changeStatus(workItem,'completed');"><i class="fa fa-check-square-o fa-fw"></i></button> --> 
+		<button type="button" class="btn btn-sm btn-success" data-ng-hide="workItem.status == 'new'" data-ng-click="changeStatus(workItem,'new');"><i class="fa fa-pencil fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-success" data-ng-hide="workItem.status == 'deleted'" data-ng-click="changeStatus(workItem,'deleted');"><i class="fa fa-check-square-o fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-danger" data-ng-show="workItem.status == 'deleted' || true" data-ng-click="remove(workItem);"><i class="fa fa-trash-o fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-primary" data-ng-click="addContent(workItem);"><i class="fa fa-comment-o fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-primary" data-ng-click="cut(workItem);"><i class="fa fa-arrows-alt fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-primary" data-ng-click="moveToChild(workItem);"><i class="fa fa-indent fa-fw"></i></button>
+		<button type="button" class="btn btn-sm btn-primary" data-ng-click="moveToParent(workItem);"><i class="fa fa-outdent fa-fw"></i></button>
+		
+		<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" data-ng-click="exportTo(workItem)"><i class="fa fa-file-text-o fa-fw"></i></button>
+	</div>
+	<div class="text-muted wiContent" data-ng-show="workItem.showContent || (workItem.content && workItem.content.length >0)" data-ng-blur="editContent(workItem)" data-ng-Keydown = "prevent" id = "content_{{workItem._id}}" contenteditable="{{editable}}" data-ng-bind-html = "workItem.content"></div>
+	
+	<div class="workitems" data-ng-init="findChild(workItem)" data-ng-show ="workItem.expand">
+		<div  class="workitem {{workItem.highlight || clipboard._id == workItem._id?'highlight':''}}" data-ng-show="workItem.status != 'deleted' || displaydeleted" id="{{workItem._id}}" data-ng-repeat="workItem in workItem.childItems | filter:query" ng-include src="'workItem_rendere.html'" ></div>
+	</div>
+	</script>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Export</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-default">
+						<div class="panel-body export" contenteditable>
+<pre>{{exportResult}}</pre>
+						</div>
+					</div>
+					<button type="button" class="btn btn-default" data-ng-click="exportTo(false,'PT')">Plain Text</button>
+					<button type="button" class="btn btn-default" data-ng-click="exportTo(false,'MD')">Markdown</button>
+				</div>
+				<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="col-md-8 col-md-offset-2">
+			<div id="workitemsPanel" class="panel panel-default">
+				<ol class="breadcrumb" data-ng-show="root.ancestors.length>0">
+					<li data-ng-repeat="anc in root.ancestors"><a href="{{'#!/workitems/'+anc._id}}">{{anc.subject}}</a></li>
+				</ol>
+				<div class="panel-body">
+					<h3 class="panel-title">{{root.subject}}</h3>
+					<div class="text-muted wiContent" data-ng-show="root.showContent || (root.content && root.content.length >0)" data-ng-blur="editContent(root)" data-ng-Keydown = "prevent" id = "content_{{root._id}}" contenteditable="{{editable}}">{{root.content}}</div>
+					<div class="workitemsL1">
+						<div class="workitem {{workItem.highlight || clipboard._id == workItem._id?'highlight':''}}" data-ng-show="workItem.status != 'deleted' || displaydeleted" id="{{workItem._id}}" data-ng-repeat="workItem in root.childItems | filter:query" ng-include src="'workItem_rendere.html'" ></div>
+					</div>
+<h4 data-ng-hide="!root.childItems || showHideExpandIcon(root)">No work item  yet. Why don't you <a ng-click="createChild(root)">Create One</a>?</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

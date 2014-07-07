@@ -1,0 +1,14 @@
+<section data-ng-controller="WorkitemsController" data-ng-init="findOne()">
+    <span>{{workItem.created | date:'medium'}}</span> /
+    <span>{{workItem.user.name}}</span>
+    <h2>{{workItem.subject}}</h2>
+    <p>{{workItem.content}}</p>
+    <div data-ng-show="global.userid == workItem.user._id">
+        <a class="btn" href="/#!/workitems/{{workItem._id}}/edit">
+        	<i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+</section>

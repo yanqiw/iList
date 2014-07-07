@@ -1,0 +1,153 @@
+body{
+	background-color: #eeeeee
+}
+
+h1 {
+    text-align:center
+}
+
+div#workitemsPanel{
+	min-height: 1100px;
+	position: relative;
+}
+
+div#workitemsPanel ol.breadcrumb{
+	margin-bottom: 0px
+}
+
+
+
+div.workitems{
+	position: relative;
+	margin-left: 10px;
+	border-left: 1px solid #ccc;
+	left: -20px;
+	padding-left: 20px;
+}
+
+div.workitemsL1{
+	position: relative;
+	margin-left: 10px;
+	padding-left: 20px;
+}
+
+div.workitems div.workitem{
+	list-style-type:none;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+}
+
+div.workitems div.workitem:first-child{
+	margin-top: 5px;
+}
+div.wiSubject {
+	color: #000000;
+	cursor: text;
+	text-decoration: none;
+	line-height: 20px;
+	min-height: 20px;
+	position: relative;
+	display: block;
+	letter-spacing: inherit;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	vertical-align: baseline;
+}
+
+div.wiComplete {
+	
+}
+
+div.wiSubject:focus{
+	outline: none;
+}
+
+div.completed{
+	text-decoration: line-through;
+	color: #999
+}
+
+div.wiContent {
+	white-space: pre-wrap;
+	min-height: 20px;
+	outline: none;
+}
+
+div.inline {
+	display: inline;
+}
+div.inline-block {
+	display: inline-block;
+}
+div.block {
+	display: block;
+}
+
+div.export{
+	height: 200px;
+	overflow: scroll;
+}
+
+div.export pre{
+	padding: 0px;
+	border:0px;
+	background: #ffffff;
+}
+
+div.insertLine {
+	height: 5px;
+	background: #5bc0de;
+	width: 100%
+}
+
+div.insertSubLine {
+	height: 5px;
+	background: #5cb85c;
+	width: 90%;
+	margin-left: : 20px;
+	margin-bottom: 5px
+}
+.highlight {
+	background-color: #d9edf7;
+	color: #31708f;
+	border-radius: 4px;
+}
+
+.pointer {
+	cursor:pointer;
+}
+
+.icon {
+	display: inline-block;
+	position: absolute;
+	line-height: 20px;
+	z-index: 10;
+	left: 0px;
+}
+
+.iconExpand {
+	display: inline-block;
+	position: absolute;
+	line-height: 20px;
+	z-index: 10;
+	left: -20px;
+}
+
+
+/*basic link*/
+div.wiSubject span {color:#222222; cursor:pointer;}
+div.wiSubject span:link    {color:#222222; cursor:pointer;}
+div.wiSubject span:visited {color:#222222; cursor:pointer;}
+div.wiSubject span:hover   {color:#222222; cursor:pointer;}
+
+/*Tags*/
+div.wiSubject .content-tag    {color:#999999;}
+div.wiSubject span:link.content-tag    {color:#999999;}
+div.wiSubject span:visited.content-tag {color:#999999;}
+div.wiSubject span:hover.content-tag   {color:#999999; background-color:#eeeeee;}
+
+/*Links*/
+div.wiSubject .content-link   {cursor:pointer;text-decoration:underline}
+div.wiSubject span:link.content-link   {color:#222222; cursor:pointer;text-decoration:underline}
