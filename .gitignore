@@ -3,7 +3,6 @@
 .sass-cache/
 .bower-*/
 .idea/
-.gitignore
 node_modules/
 public/system/lib
 mean.iml
