@@ -32,7 +32,7 @@ http://localhost:8080
 If you can't run the application on 8080, you can change the seting in `\server\config\env\development.js`.
 
 ##How to use it
-- Rejister a new ID in `Sign up`
+- Register a new ID in `Sign up`
 - Sing in the application, and enjoy it! :)
 - You can open the toolbar by click pencil icon
 - Press `Enter` to create a new line
