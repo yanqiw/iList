@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "meanio":"0.3.0",
-    "assetmanager": "^0.1.1",
+    "assetmanager": "0.1.2",
     "express": "~3.4.7",
     "consolidate": "~0.10.0",
     "dependable": "0.2.5",
