@@ -10,4 +10,4 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
-/server/config/env/
+server/config/env/
