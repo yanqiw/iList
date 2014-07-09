@@ -57,14 +57,10 @@
 	<!-- header end -->
 
 	<script type="text/ng-template" id="workItem_rendere.html">
-
-		
-		
 		<div class="icon">
 		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'new'" class = "fa fa-pencil fa-fw pointer"></i>
 		<!--<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'completed'" class="fa fa-check-square-o fa-fw pointer"></i> -->
 		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'deleted' || workItem.status == 'completed'" class="fa fa-check-square-o pointer"></i>
-
 		</div>
 		<div class="iconExpand">
 		<i data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true" data-ng-show="showHideExpandIcon(workItem)" data-ng-click="toggleExpand(workItem);" class="fa fa-{{workItem.expand?'minus': 'plus'}}-square pointer"></i>
@@ -137,7 +133,7 @@
 				<div class="panel-body">
 					<h3 class="panel-title">{{root.subject}}</h3>
 					<div class="text-muted wiContent" data-ng-show="root.showContent || (root.content && root.content.length >0)" data-ng-blur="editContent(root)" data-ng-Keydown = "prevent" id = "content_{{root._id}}" contenteditable="{{editable}}">{{root.content}}</div>
-					<div class="workitemsL1">
+					<div id="workitemsPanelBody" class="workitemsL1">
 						<div class="workitem {{workItem.highlight || clipboard._id == workItem._id?'highlight':''}}" data-ng-show="workItem.status != 'deleted' || displaydeleted" id="{{workItem._id}}" data-ng-repeat="workItem in root.childItems | filter:query" ng-include src="'workItem_rendere.html'" ></div>
 					</div>
 <h4 data-ng-hide="!root.childItems || showHideExpandIcon(root)">No work item  yet. Why don't you <a ng-click="createChild(root)">Create One</a>?</h4>
