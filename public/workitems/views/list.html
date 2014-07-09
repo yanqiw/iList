@@ -75,11 +75,7 @@
 	<!--<span>#{{workItem.index}}</span>-->
 	<div class="wiSubject {{workItem.status=='completed' || workItem.status=='deleted'?'completed':''}}" data-ng-Keydown="editSubject(workItem, $event)" data-ng-Keyup="cleanHotkeys($event)" data-ng-blur="editSubject(workItem, $event)" id = "subject_{{workItem._id}}"  contenteditable="{{editable}}" focus-me="workItem.focusInput" ng-subject="workItem.subject" ng-keyword="query"></div>
 
-	<!--<button type="button" data-ng-show="workItem === clipboard" class="btn btn-xs btn-info" data-ng-click="cleanClipboard();"><i class="fa fa-eraser fa-fw"></i></button>
-	<div class = "btn-group" data-ng-show = "clipboard && isChild(workItem, clipboard)">
-					<button type="button"  class="btn btn-xs btn-info" data-ng-click="paste(workItem);"><i class="fa fa-angle-down fa-fw"></i></button>
-					<button type="button"  class="btn btn-xs btn-success" data-ng-click="paste(workItem,true);"><i class="fa fa-angle-right fa-fw"></i></button>
-	</div>-->
+	
 	<div class="btn-group" data-ng-show="workItem.showToolBar">
 		<a class="btn btn-sm btn-primary" data-ng-href="#!/workitems/{{workItem._id}}"><i class="fa fa-folder-open-o fa-fw"></i></a>
 		<!-- <button type="button" class="btn btn-sm btn-success" data-ng-hide="workItem.status == 'completed'" data-ng-click="changeStatus(workItem,'completed');"><i class="fa fa-check-square-o fa-fw"></i></button> --> 
@@ -133,7 +129,7 @@
 				<div class="panel-body">
 					<h3 class="panel-title">{{root.subject}}</h3>
 					<div class="text-muted wiContent" data-ng-show="root.showContent || (root.content && root.content.length >0)" data-ng-blur="editContent(root)" data-ng-Keydown = "prevent" id = "content_{{root._id}}" contenteditable="{{editable}}">{{root.content}}</div>
-					<div id="workitemsPanelBody" class="workitemsL1">
+					<div class="{{clipboard?'workitemsPanelBody':''}} workitemsL1">
 						<div class="workitem {{workItem.highlight || clipboard._id == workItem._id?'highlight':''}}" data-ng-show="workItem.status != 'deleted' || displaydeleted" id="{{workItem._id}}" data-ng-repeat="workItem in root.childItems | filter:query" ng-include src="'workItem_rendere.html'" ></div>
 					</div>
 <h4 data-ng-hide="!root.childItems || showHideExpandIcon(root)">No work item  yet. Why don't you <a ng-click="createChild(root)">Create One</a>?</h4>

@@ -15,8 +15,8 @@ div#workitemsPanel ol.breadcrumb{
 	margin-bottom: 0px
 }
 
-div#workitemsPanelBody {
-	margin-left: 45px;
+div.workitemsPanelBody {
+	margin-left: 45px !important;
 }
 
 div.workitems{
