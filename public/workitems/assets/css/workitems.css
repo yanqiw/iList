@@ -19,7 +19,7 @@ div#workitemsPanel ol.breadcrumb{
 
 div.workitems{
 	position: relative;
-	margin-left: 10px;
+	margin-left: 20px;
 	border-left: 1px solid #ccc;
 	left: -20px;
 	padding-left: 20px;
@@ -127,12 +127,21 @@ div.insertSubLine {
 	left: 0px;
 }
 
+.iconMove {
+	display: inline-block;
+	position: absolute;
+	line-height: 20px;
+	z-index: 10;
+	left: -55px;
+}
+
+
 .iconExpand {
 	display: inline-block;
 	position: absolute;
 	line-height: 20px;
 	z-index: 10;
-	left: -20px;
+	left: -15px;
 }
 
 

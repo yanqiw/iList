@@ -57,23 +57,33 @@
 	<!-- header end -->
 
 	<script type="text/ng-template" id="workItem_rendere.html">
-		<button type="button" class="btn btn-xs btn-link iconExpand" data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true" data-ng-show="showHideExpandIcon(workItem)" data-ng-click="toggleExpand(workItem);"><i class="fa fa-{{workItem.expand?'minus': 'plus'}}-square"></i></button>
+
+		
 		
 		<div class="icon">
 		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'new'" class = "fa fa-pencil fa-fw pointer"></i>
 		<!--<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'completed'" class="fa fa-check-square-o fa-fw pointer"></i> -->
 		<i data-ng-click="toggleToolBar(workItem)" data-ng-show="workItem.status == 'deleted' || workItem.status == 'completed'" class="fa fa-check-square-o pointer"></i>
+
+		</div>
+		<div class="iconExpand">
+		<i data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true" data-ng-show="showHideExpandIcon(workItem)" data-ng-click="toggleExpand(workItem);" class="fa fa-{{workItem.expand?'minus': 'plus'}}-square pointer"></i>
+		</div>
+		<div class="iconMove">
+			<i data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-down pointer" data-ng-click="paste(workItem);"></i>
+			<i data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-right pointer" data-ng-click="paste(workItem,true);"></i>
+			<i data-ng-show="workItem === clipboard" data-ng-click="cleanClipboard();" class="fa fa-eraser pointer"></i>
 		</div>
 											
 			
 	<!--<span>#{{workItem.index}}</span>-->
 	<div class="wiSubject {{workItem.status=='completed' || workItem.status=='deleted'?'completed':''}}" data-ng-Keydown="editSubject(workItem, $event)" data-ng-Keyup="cleanHotkeys($event)" data-ng-blur="editSubject(workItem, $event)" id = "subject_{{workItem._id}}"  contenteditable="{{editable}}" focus-me="workItem.focusInput" ng-subject="workItem.subject" ng-keyword="query"></div>
 
-	<button type="button" data-ng-show="workItem === clipboard" class="btn btn-xs btn-info" data-ng-click="cleanClipboard();"><i class="fa fa-eraser fa-fw"></i></button>
+	<!--<button type="button" data-ng-show="workItem === clipboard" class="btn btn-xs btn-info" data-ng-click="cleanClipboard();"><i class="fa fa-eraser fa-fw"></i></button>
 	<div class = "btn-group" data-ng-show = "clipboard && isChild(workItem, clipboard)">
 					<button type="button"  class="btn btn-xs btn-info" data-ng-click="paste(workItem);"><i class="fa fa-angle-down fa-fw"></i></button>
 					<button type="button"  class="btn btn-xs btn-success" data-ng-click="paste(workItem,true);"><i class="fa fa-angle-right fa-fw"></i></button>
-	</div>
+	</div>-->
 	<div class="btn-group" data-ng-show="workItem.showToolBar">
 		<a class="btn btn-sm btn-primary" data-ng-href="#!/workitems/{{workItem._id}}"><i class="fa fa-folder-open-o fa-fw"></i></a>
 		<!-- <button type="button" class="btn btn-sm btn-success" data-ng-hide="workItem.status == 'completed'" data-ng-click="changeStatus(workItem,'completed');"><i class="fa fa-check-square-o fa-fw"></i></button> --> 
