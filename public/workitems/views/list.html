@@ -66,8 +66,8 @@
 		<i data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true" data-ng-show="showHideExpandIcon(workItem)" data-ng-click="toggleExpand(workItem);" class="fa fa-{{workItem.expand?'minus': 'plus'}}-square pointer"></i>
 		</div>
 		<div class="iconMove">
-			<i data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-down pointer" data-ng-click="paste(workItem);"></i>
-			<i data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-right pointer" data-ng-click="paste(workItem,true);"></i>
+			<i data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true"  data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-down pointer" data-ng-click="paste(workItem);"></i>
+			<i data-ng-mouseleave="workItem.highlight = false" data-ng-mouseover="workItem.highlight = true"  data-ng-show = "clipboard && isChild(workItem, clipboard)" class="fa fa-chevron-circle-right pointer" data-ng-click="paste(workItem,true);"></i>
 			<i data-ng-show="workItem === clipboard" data-ng-click="cleanClipboard();" class="fa fa-eraser pointer"></i>
 		</div>
 											
