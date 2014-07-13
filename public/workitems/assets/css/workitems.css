@@ -9,6 +9,7 @@ h1 {
 div#workitemsPanel{
 	min-height: 1100px;
 	position: relative;
+	background: url(../img/background/grid.gif);
 }
 
 div#workitemsPanel ol.breadcrumb{
@@ -22,12 +23,12 @@ div.workitemsPanelBody {
 div.workitems{
 	position: relative;
 	border-left: 1px solid #ccc;
-	padding-left: 20px;
+	padding-left: 19px;
 }
 
 div.workitemsL1{
 	position: relative;
-	margin-left: 10px;
+	margin-left: 25px;
 	padding-left: 20px;
 	margin-top:10px;
 }
@@ -35,13 +36,13 @@ div.workitemsL1{
 div.workitems div.workitem{
 	list-style-type:none;
 	padding-left: 20px;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	position: relative;
 }
 
 div.workitems div.workitem:first-child{
-	margin-top: 5px;
+	margin-top: 0px;
 }
 div.wiSubject {
 	color: #000000;
