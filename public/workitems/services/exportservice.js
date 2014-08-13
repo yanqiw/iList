@@ -24,8 +24,6 @@ angular.module('mean.workitems').factory('exportservice', function() {
 					}
 				}
 
-
-
 				//for child items
 				prefix += indentation;
 
