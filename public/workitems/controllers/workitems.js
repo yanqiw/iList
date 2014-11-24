@@ -287,7 +287,7 @@ angular.module('mean.workitems').controller('WorkitemsController', ['$scope', '$
 
 
             wi.status = status;
-            wi.updated.push = new Date().getTime();
+            wi.updated = new Date().getTime();
 
             var childItems = workitem.childItems;
             wi.$update(function(workitem) {
