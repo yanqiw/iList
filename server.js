@@ -32,30 +32,7 @@ var app = require('./server/config/system/bootstrap')(passport, db);
 app.listen(config.port);
 console.log('HTTP redirect app started on port ' + config.port);
 
-// SSL
-// var https = require('https');
-// var fs = require('fs');
-// var ca = fs.readFileSync('cafile', 'utf8');
-// var privateKey  = fs.readFileSync('privatekdy', 'utf8');
-// var certificate = fs.readFileSync('certificate', 'utf8');
-// var credentials = {ca: ca, key: privateKey, cert: certificate, passphrase: config.passphrase};
-// https.createServer(credentials, app).listen(config.sslport);
 
-// console.log('Express app started on port ' + config.sslport);
-
-// // set up plain http server
-// var httpRedirect = express();
-
-// // set up a route to redirect http to https
-// httpRedirect.get('*',function(req,res){  
-// 	//console.log(req);
-//     res.redirect('https://'+config.hostname+(config.sslport && config.sslport!=443?':'+config.sslport:'')+req.url)
-// })
-
-// // have it listen on 8080
-// httpRedirect.listen(config.port);
-// console.log('HTTP redirect app started on port ' + config.port);
-// SSL end
 
 // Initializing logger
 logger.init(app, passport, mongoose);
