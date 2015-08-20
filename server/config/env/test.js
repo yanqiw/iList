@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/mean-test',
+    db: 'mongodb://10.144.229.125/mean-test',
     port: 3081,
     passphrase: '',
     hostname: '',
