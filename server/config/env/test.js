@@ -2,10 +2,10 @@
 
 module.exports = {
     db: 'mongodb://mongo/mean-test',
-    port: 3081,
+    port: 3080,
     passphrase: '',
     hostname: '',
-    sslport: 3001,
+    sslport: 3443,
     app: {
         name: 'iList - Beta'
     },

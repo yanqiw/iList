@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://mongo/mean-dev',
+    db: 'mongodb://192.168.59.103/mean-dev',
     port: 8080,
     hostname: 'localhost',
     sslport: 8081,
