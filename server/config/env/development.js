@@ -5,7 +5,7 @@ module.exports = {
     port: 8080,
     hostname: 'localhost',
     sslport: 8081,
-    passphrase: '',
+    passphrase: 'frankwang',
     app: {
         name: 'iList - Dev'
     },

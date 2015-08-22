@@ -3,7 +3,7 @@
 module.exports = {
     db: 'mongodb://mongo/mean-test',
     port: 3080,
-    passphrase: '',
+    passphrase: 'frankwang',
     hostname: '',
     sslport: 3443,
     app: {
