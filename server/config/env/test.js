@@ -4,7 +4,7 @@ module.exports = {
     db: 'mongodb://mongo/mean-test',
     port: 3080,
     passphrase: 'frankwang',
-    hostname: '',
+    hostname: 'inotepad.net',
     sslport: 3443,
     app: {
         name: 'iList - Beta'
